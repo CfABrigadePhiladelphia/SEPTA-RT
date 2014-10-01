@@ -1,0 +1,47 @@
+<html class=""><head><meta charset="UTF-8"><meta name="robots" content="noindex"><link rel="canonical" href="http://codepen.io/leemark/pen/vcbuf">
+
+<link rel="stylesheet prefetch" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css">
+<style class="cp-pen-styles">@import url(http://yui.yahooapis.com/pure/0.3.0/pure-min.css);
+html{background: #111;}
+body{
+  max-width: 500px;
+  margin: 1em auto;
+  text-align: center;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 0 25px;
+  border-radius: 3%;
+}
+#leafletmap{
+  height: 300px;
+  border: 1px solid #ccc;
+}
+button{
+  margin: 1.5em;
+}</style><style type="text/css"></style></head><body>
+<!--[if lte IE 8]>
+     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.ie.css" />
+<![endif]-->
+<h1>Building Interactive Maps with Leaflet &amp; the Geo​location API</h1>
+<div id="leafletmap" class="leaflet-container leaflet-fade-anim" tabindex="0" style="position: relative;"><div class="leaflet-map-pane" style="transform: translate3d(0px, 0px, 0px);"><div class="leaflet-tile-pane"><div class="leaflet-layer"><div class="leaflet-tile-container leaflet-zoom-animated"></div><div class="leaflet-tile-container leaflet-zoom-animated"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 18px; top: -21px;" src="http://c.tile.osm.org/15/9650/12312.png"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 18px; top: 235px;" src="http://a.tile.osm.org/15/9650/12313.png"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: -238px; top: -21px;" src="http://b.tile.osm.org/15/9649/12312.png"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 274px; top: -21px;" src="http://a.tile.osm.org/15/9651/12312.png"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: -238px; top: 235px;" src="http://c.tile.osm.org/15/9649/12313.png"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 274px; top: 235px;" src="http://b.tile.osm.org/15/9651/12313.png"></div></div></div><div class="leaflet-objects-pane"><div class="leaflet-shadow-pane"></div><div class="leaflet-overlay-pane"></div><div class="leaflet-marker-pane"></div><div class="leaflet-popup-pane"></div></div></div><div class="leaflet-control-container"><div class="leaflet-top leaflet-left"><div class="leaflet-control-zoom leaflet-bar leaflet-control"><a class="leaflet-control-zoom-in" href="#" title="Zoom in">+</a><a class="leaflet-control-zoom-out" href="#" title="Zoom out">-</a></div></div><div class="leaflet-top leaflet-right"></div><div class="leaflet-bottom leaflet-left"></div><div class="leaflet-bottom leaflet-right"><div class="leaflet-control-attribution leaflet-control"><a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> | Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a></div></div></div></div>
+<i class="fa fa-map-marker"></i>
+<button class="pure-button pure-button-primary">Get my location</button>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script><script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
+<script>var mymap = L.map('leafletmap');
+mymap.setView([40.775,-73.972], 15);
+L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+    maxZoom: 18
+}).addTo(mymap);
+
+$('.pure-button').on('click', function(){
+  mymap.locate({setView: true, maxZoom: 15});
+});
+
+mymap.on('locationfound', onLocationFound);
+function onLocationFound(e) {
+    L.marker(e.latlng).addTo(mymap);
+}//@ sourceURL=pen.js
+</script>
+<script src="http://codepen.io/assets/editor/live/css_live_reload_init.js"></script>
+</body></html>
